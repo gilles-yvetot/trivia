@@ -2,6 +2,9 @@ const { Router } = require('express');
 
 const router = new Router();
 
-router.route('status').get((req, res) => { res.json({ ok: 1 }) })
+router.route('/status').get((req, res) => { res.json({ ok: 1 }) })
+router.route('/user/login').post((req, res) => { res.json({ ok: 1 }) })
+router.route('/user/signup').post((req, res) => { res.json({ ok: 1 }) })
+router.route('/user/verify').post((req, res) => { res.json({ ok: 1 }) })
 
 module.exports = router
