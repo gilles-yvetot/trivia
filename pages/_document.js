@@ -1,7 +1,9 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Document, { Head, Main, NextScript } from 'next/document';
+import PropTypes from 'prop-types';
 import flush from 'styled-jsx/server';
+
+// Used for MUI + html head tag + Style reset
 
 class MyDocument extends Document {
   render() {
@@ -10,23 +12,46 @@ class MyDocument extends Document {
     return (
       <html lang="en" dir="ltr">
         <Head>
+          <link rel='icon' href='https://omniinc.com/favicon.ico' />
+          <link href="https://fonts.googleapis.com/css?family=Oxygen:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet" />
+          <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossOrigin='anonymous' />
           <meta charSet="utf-8" />
-          {/* Use minimum-scale=1 to enable GPU rasterization */}
           <meta
             name="viewport"
-            content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no"
+            content={'user-scalable=0, initial-scale=1, ' + 'minimum-scale=1, width=device-width, height=device-height'}
           />
-          {/* PWA primary color */}
           <meta name="theme-color" content={pageContext.theme.palette.primary.main} />
-          <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"
-          />
         </Head>
         <body>
           <Main />
           <NextScript />
         </body>
+        <style global jsx>
+          {`
+          body {
+            margin: 0;
+            height: 100vh;
+          }
+
+          #__next {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            alignItems: stretch;
+          }
+
+          #__next > main {
+            flex: 1
+          }
+          ul {
+            margin: 0;
+            padding: 0
+          }
+          a {
+            text-decoration: none;
+          }
+        `}
+        </style>
       </html>
     );
   }
@@ -64,7 +89,7 @@ MyDocument.getInitialProps = ctx => {
     };
 
     WrappedComponent.propTypes = {
-      pageContext: PropTypes.object.isRequired,
+      pageContext: PropTypes.object.isRequired,// eslint-disable-line
     };
 
     return WrappedComponent;

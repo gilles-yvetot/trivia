@@ -1,30 +1,49 @@
 {
-  "name": "trivia",
-  "version": "0.0.1",
-  "description": "Simple trivia project with questions from opentdb.com database",
-  "main": "server/index.js",
-  "repository": "https://github.com/gilles-yvetot/trivia",
-  "author": "g.yvetot@gmail.com",
-  "license": "MIT",
-  "private": false,
+  "name": "boilerplate",
+  "version": "1.0.0",
+  "private": true,
   "scripts": {
-    "dev": "next",
+    "dev": "node server/index.js",
     "build": "next build",
-    "start": "next start",
-    "stop": "node server/index.js"
+    "start": "NODE_ENV=production yarn dev",
+    "slate": "rm -rf node_modules && yarn",
+    "lint": "./node_modules/.bin/eslint -c ./.eslintrc .",
+    "precommit": "yarn lint:staged",
+    "lint:staged": "lint-staged"
+  },
+  "lint-staged": {
+    "*.js": [
+      "./node_modules/.bin/eslint -c ./.eslintrc --fix",
+      "git add"
+    ]
   },
   "dependencies": {
-    "@material-ui/core": "latest",
+    "@material-ui/core": "^3.5.1",
+    "@material-ui/icons": "^3.0.1",
+    "@zeit/next-css": "^1.0.1",
+    "body-parser": "^1.18.3",
+    "classnames": "^2.2.6",
     "cookie-parser": "^1.4.3",
-    "express": "^4.16.4",
-    "js-cookie": "^2.2.0",
-    "jss": "latest",
+    "express": "^4.16.3",
+    "isomorphic-fetch": "^2.2.1",
+    "jss": "^9.8.7",
+    "lodash": "^4.17.11",
     "mongoose": "^5.3.13",
-    "next": "latest",
-    "prop-types": "latest",
-    "react": "latest",
-    "react-dom": "latest",
-    "react-jss": "latest",
-    "redux": "^4.0.1"
+    "next": "^7.0.2",
+    "numeral": "^2.0.6",
+    "raven": "^2.6.4",
+    "react": "16.4.1",
+    "react-dom": "^16.4.1",
+    "react-jss": "^8.6.1",
+    "unistore": "^3.0.6"
+  },
+  "devDependencies": {
+    "babel-eslint": "^9.0.0",
+    "eslint": "^5.5.0",
+    "eslint-config-airbnb": "^17.0.0",
+    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-plugin-react": "^7.10.0",
+    "lint-staged": "^7.2.0"
   }
 }

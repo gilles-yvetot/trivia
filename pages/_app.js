@@ -1,12 +1,21 @@
-import React from 'react';
-import App, { Container } from 'next/app';
-import Head from 'next/head';
+import App, { Container } from 'next/app'
+import Head from 'next/head'
+import React from 'react'
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import { Provider } from 'unistore/react'
 import JssProvider from 'react-jss/lib/JssProvider';
+import { getCookie } from '../util/cookies'
+import Wrapper from '../components/Wrapper'
+import store from '../store/store'
 import getPageContext from '../src/getPageContext';
+import { callApi } from '../util/apiCaller'
+
 
 class MyApp extends App {
+
+  pageContext = null;
+
   constructor(props) {
     super(props);
     this.pageContext = getPageContext();
@@ -20,8 +29,22 @@ class MyApp extends App {
     }
   }
 
+  static async getInitialProps({ Component, ctx }) {
+
+    let pageProps = {}
+    if (Component.getInitialProps) {
+      pageProps = await Component.getInitialProps(ctx)
+    }
+    return callApi('user/verify', 'post', {
+      token: getCookie('token', ctx.req && ctx.req.headers.cookie),
+    })
+      .then(({ user, token }) => ({ pageProps, user, token }))
+      .catch(() => ({ pageProps }))
+  }
+
   render() {
-    const { Component, pageProps } = this.props;
+    const { Component, pageProps, user, token } = this.props
+
     return (
       <Container>
         <Head>
@@ -42,12 +65,19 @@ class MyApp extends App {
             <CssBaseline />
             {/* Pass pageContext to the _document though the renderPage enhancer
                 to render collected styles on server side. */}
-            <Component pageContext={this.pageContext} {...pageProps} />
+            <Provider store={store}>
+              <Wrapper retrievedUser={user} token={token}>
+                <Component
+                  pageContext={this.pageContext}
+                  {...pageProps}
+                />
+              </Wrapper>
+            </Provider>
           </MuiThemeProvider>
         </JssProvider>
       </Container>
-    );
+    )
   }
 }
 
-export default MyApp;
+export default MyApp

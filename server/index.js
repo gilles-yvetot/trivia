@@ -14,27 +14,9 @@ mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true })
   .then(() => app.prepare())
   .then(() => {
     const server = express()
-    server.enable('trust proxy');
+    server.set('trust proxy', 1);
     server.use(bodyParser.json({ type: '*/*' }));
     server.use(cookieParser())
-
-    server.get('/signin', (req, res) => {
-      if (req.cookies.token) {
-        res.redirect('/');
-      }
-      else {
-        return app.render(req, res, '/signin', req.query);
-      }
-    });
-
-    server.get('/signup', (req, res) => {
-      if (req.cookies.token) {
-        res.redirect('/');
-      }
-      else {
-        return app.render(req, res, '/signup', req.query);
-      }
-    });
 
     server.use('api', apiRoutes)
 

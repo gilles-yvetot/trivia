@@ -1,0 +1,112 @@
+{
+  "extends": [
+    "airbnb",
+    "eslint:recommended"
+  ],
+  "parser": babel-eslint,
+  "env": {
+    "es6": true,
+    "jasmine": true
+  },
+  // Map from global var to bool specifying if it can be redefined
+  "globals": {
+    "__DEV__": true,
+    "__dirname": false,
+    "__fbBatchedBridgeConfig": false,
+    "alert": false,
+    "cancelAnimationFrame": false,
+    "cancelIdleCallback": false,
+    "clearImmediate": true,
+    "clearInterval": false,
+    "clearTimeout": false,
+    "console": false,
+    "document": false,
+    "escape": false,
+    "Event": false,
+    "EventTarget": false,
+    "exports": false,
+    "fetch": false,
+    "FormData": false,
+    "global": false,
+    "jest": false,
+    "Map": true,
+    "module": false,
+    "navigator": false,
+    "process": false,
+    "Promise": true,
+    "requestAnimationFrame": true,
+    "requestIdleCallback": true,
+    "require": false,
+    "Set": true,
+    "setImmediate": true,
+    "setInterval": false,
+    "setTimeout": false,
+    "window": false,
+    "XMLHttpRequest": false,
+    "pit": false,
+    "SyntheticEvent": false,
+    "$Either": false,
+    "$All": false,
+    "$Tuple": false,
+    "$Supertype": false,
+    "$Subtype": false,
+    "$Shape": false,
+    "$Diff": false,
+    "$Keys": false,
+    "$Enum": false,
+    "$Exports": false,
+    "$FlowIssue": false,
+    "$FlowFixMe": false,
+    "$FixMe": false
+  },
+  "rules": {
+    // off = 0, warn = 1, error = 2
+    "no-useless-escape": 0,
+    "react/prop-types": 0,
+    "import/no-named-as-default": 0,
+    "import/prefer-default-export": 0,
+    "import/no-extraneous-dependencies": 0,
+    "react/destructuring-assignment": 0,
+    "react/jsx-filename-extension": 0,
+    "import/no-unresolved": 0,
+    "import/extensions": 0,
+    "import/newline-after-import": 0,
+    "jsx-a11y/click-events-have-key-events": 0,
+    "jsx-a11y/no-static-element-interactions": 0,
+    "jsx-a11y/no-noninteractive-element-interactions": 0,
+    "no-class-assign": 0,
+    "no-console": 0,
+    "import/first": 0,
+    "no-extra-boolean-cast": 0,
+    "no-undef": 0,
+    "no-unused-vars": 2,
+    "no-case-declarations": 2,
+    "comma-dangle": 0,
+    "valid-typeof": "error",
+    "no-var": "error",
+    "use-isnan": "error",
+    "indent": [
+      "error",
+      2,
+      {
+        "SwitchCase": 1,
+        "CallExpression": {
+          "arguments": "first"
+        }
+      }
+    ],
+    "quotes": [
+      "error",
+      "single",
+      {
+        "avoidEscape": true,
+        "allowTemplateLiterals": true
+      }
+    ],
+    "sort-imports": 0,
+    "import/imports-first": [
+      "off",
+      "DISABLE-absolute-first"
+    ]
+  }
+}
