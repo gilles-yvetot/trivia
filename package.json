@@ -2,7 +2,7 @@
   "name": "trivia",
   "version": "0.0.1",
   "description": "Simple trivia project with questions from opentdb.com database",
-  "main": "index.js",
+  "main": "server/index.js",
   "repository": "https://github.com/gilles-yvetot/trivia",
   "author": "g.yvetot@gmail.com",
   "license": "MIT",
@@ -10,10 +10,12 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "stop": "node server/index.js"
   },
   "dependencies": {
     "@material-ui/core": "latest",
+    "express": "^4.16.4",
     "jss": "latest",
     "mongoose": "^5.3.13",
     "next": "latest",
