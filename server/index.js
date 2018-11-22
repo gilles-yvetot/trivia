@@ -1,5 +1,6 @@
 const express = require('express')
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 const next = require('next')
 const mongoose = require('mongoose');
 const apiRoutes = require('./routes');
@@ -15,6 +16,25 @@ mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true })
     const server = express()
     server.enable('trust proxy');
     server.use(bodyParser.json({ type: '*/*' }));
+    server.use(cookieParser())
+
+    server.get('/signin', (req, res) => {
+      if (req.cookies.token) {
+        res.redirect('/');
+      }
+      else {
+        return app.render(req, res, '/signin', req.query);
+      }
+    });
+
+    server.get('/signup', (req, res) => {
+      if (req.cookies.token) {
+        res.redirect('/');
+      }
+      else {
+        return app.render(req, res, '/signup', req.query);
+      }
+    });
 
     server.use('api', apiRoutes)
 
