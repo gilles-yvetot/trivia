@@ -17,6 +17,7 @@
     "@material-ui/core": "latest",
     "cookie-parser": "^1.4.3",
     "express": "^4.16.4",
+    "js-cookie": "^2.2.0",
     "jss": "latest",
     "mongoose": "^5.3.13",
     "next": "latest",
