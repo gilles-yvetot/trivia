@@ -1,6 +1,7 @@
 
 const { verifyToken, generateToken } = require('./token')
 const User = require('./User')
+const Result = require('./Result')
 
 function login(req, res) {
   const { email, password } = req.body
@@ -115,10 +116,37 @@ function verify(req, res) {
 }
 
 function saveResult(req, res) {
+  const result = req.body
+  result.user = req.user._id
+  Result
+    .create(result)
+    .then(() => {
+      res.json({ ok: 1 })
+    })
+    .catch(err => {
+      res.status(500).json({
+        name: err.name,
+        message: err.message,
+      })
+    })
 
 }
 function getResults(req, res) {
-
+  const limit = req.query.limit || 10
+  Result
+    .find({
+      user: req.user._id,
+    })
+    .limit(limit)
+    .then(results => {
+      res.json(results)
+    })
+    .catch(err => {
+      res.status(500).json({
+        name: err.name,
+        message: err.message,
+      })
+    })
 }
 
 module.exports = {
