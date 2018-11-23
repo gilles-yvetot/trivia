@@ -18,4 +18,8 @@ router.route('/user/login').post(controller.login)
 router.route('/user/signup').post(controller.signup)
 router.route('/user/verify').post(controller.verify)
 
+router.route('/user/result')
+  .post(isSignedIn, controller.saveResult)
+  .get(isSignedIn, controller.getResults)
+
 module.exports = router

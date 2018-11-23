@@ -114,8 +114,17 @@ function verify(req, res) {
     })
 }
 
+function saveResult(req, res) {
+
+}
+function getResults(req, res) {
+
+}
+
 module.exports = {
   login,
   signup,
   verify,
+  saveResult,
+  getResults,
 }
