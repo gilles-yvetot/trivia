@@ -47,3 +47,16 @@ export function callApi(endpoint, method = 'get', body) {
   // error => error
   // );
 }
+
+const TRIVIA_BASE_URL = `https://opentdb.com/api.php?`
+export function callTrivia(amount = 1, category = null, difficulty = null, type = null) {
+  const params = []
+  if (amount) params.push(`amount=${amount}`)
+  if (category) params.push(`category=${category}`)
+  if (difficulty) params.push(`difficulty=${difficulty}`)
+  if (type) params.push(`type=${type}`)
+
+  return fetch(`${TRIVIA_BASE_URL}${params.join('&')}`)
+    .then(res => res.json())
+
+}
