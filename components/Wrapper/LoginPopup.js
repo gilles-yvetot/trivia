@@ -78,11 +78,8 @@ class LoginPopup extends React.Component {
 
     this.setState({ loading: true })
     callApi('user/login', 'post', {
-      event: {
-        email,
-        password,
-        isAdminLogin: true
-      }
+      email,
+      password,
     })
       .then(({ user, token }) => {
         this.setState({
@@ -117,10 +114,8 @@ class LoginPopup extends React.Component {
 
     this.setState({ loading: true })
     callApi('user/signup', 'post', {
-      event: {
-        email,
-        password,
-      }
+      email,
+      password,
     })
       .then(() => {
 
