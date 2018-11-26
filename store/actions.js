@@ -6,7 +6,8 @@ export default () => ({
     if (typeof (document) == 'object' && token !== undefined) {
       if (token) {
         setCookie('token', token, 14, 'localhost')
-      } else {
+      }
+      else {
         deleteCookie('token', 'localhost')
       }
     }
@@ -16,7 +17,8 @@ export default () => ({
   setMessage(state, message, red = false) {
     if (message) {
       return ({ message, isAlert: red })
-    } else {
+    }
+    else {
       return ({ message, isAlert: false })
     }
   }
