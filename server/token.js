@@ -9,7 +9,7 @@ function generateToken(user) {
   // app/collections/models
 
   const u = {
-    id: user._id.toString(),
+    _id: user._id.toString(),
     email: user.email,
   };
   let expiresIn = 60 * 60 * 24 * 7; // 7 days
