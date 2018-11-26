@@ -5,6 +5,13 @@ I am using Next.js as a boilerplate. It removes the pain in Javascript/React con
 I spent some time to assemble Next.js with Unistore, Material-UI, JWT altogether because I realized that I really like this stack and could use it as a boilerplate for future projects. Let me know if you are interested to get it as well for your future interviewees, it would give them more time to focus on what's matter for you, the UI.
 Material-UI was not required but I took some time to integrate it to match your stack.
 
+## Getting Started
+
+- `git clone`
+- `cd trivia`
+- `yarn`
+- `yarn dev` (the database is hosted so no need to setup one locally)
+
 ## Notes
 
 ### Mongoose
