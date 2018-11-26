@@ -35,16 +35,14 @@ class MyApp extends App {
     if (Component.getInitialProps) {
       pageProps = await Component.getInitialProps(ctx)
     }
-    return callApi('user/verify', 'post', {
-      token: getCookie('token', ctx.req && ctx.req.headers.cookie),
-    })
+    const token = getCookie('token', ctx.req && ctx.req.headers.cookie)
+    return callApi('user/verify', 'post', { token, })
       .then(({ user, token }) => ({ pageProps, user, token }))
       .catch(() => ({ pageProps }))
   }
 
   render() {
     const { Component, pageProps, user, token } = this.props
-
     return (
       <Container>
         <Head>
