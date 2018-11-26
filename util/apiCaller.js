@@ -9,9 +9,11 @@ export function callApiRaw(endpoint, method = 'get', body) {
   let headers = {
     'content-type': 'application/json',
   };
-  const token = getCookie('token');
-  if (token && token != '' && endpoint != 'user/login' && endpoint != 'user/verify') {
-    headers.Authorization = `Bearer ${token}`;
+  if (endpoint != 'user/login' && endpoint != 'user/verify') {
+    const token = getCookie('token');
+    if (token && token != '') {
+      headers.Authorization = `Bearer ${token}`;
+    }
   }
 
   return fetch(`${API_URL}/${endpoint}`, {
