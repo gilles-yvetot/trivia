@@ -4,6 +4,7 @@
     {
       "type": "node",
       "request": "launch",
+      "restart": true,
       "name": "Launch Program",
       "console": "integratedTerminal",
       "program": "${workspaceFolder}/server/index.js"

@@ -119,7 +119,7 @@ class LoginPopup extends React.Component {
     })
       .then(() => {
 
-        setMessage('Thanks for signing up! Check your email to activate your account.')
+        setMessage('Thanks for signing up! Please login now.')
         this.setState({
           loading: false,
           password: '',

@@ -41,7 +41,7 @@ UserSchema.statics.validPassword = function (password) {
   else return true;
 }
 UserSchema.statics.generateHash = function (password) {
-  return bcrypt.hashSync(password, 24);
+  return bcrypt.hashSync(password, 10);
 };
 UserSchema.methods.validPassword = function (password) {
   return bcrypt.compareSync(password, this.password);

@@ -12,9 +12,10 @@ const frontRequestHandler = app.getRequestHandler()
 
 const DATABASE_URL = 'mongodb://main-nov-18:jfQ7lRvuVmPvhxQMpavcIg30GUVFRQuGvDGM@ds113134.mlab.com:13134/trivia'
 
+mongoose.set('debug', true)
 mongoose.connect(DATABASE_URL, { useNewUrlParser: true })
   .then(() => console.log(`Connection to the database successful`))
-app.prepare()
+  .then(() => app.prepare())
   .then(() => {
     const server = express()
     server.set('trust proxy', 1);
