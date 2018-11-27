@@ -26,19 +26,22 @@ export default store => ({
 
   setCategory(state, category) {
     store.setState({
-      category
+      category,
+      question: null,
     })
     if (category) {
-      callTrivia(1, category.data)
+      callTrivia(1, category.data, state.difficulty)
         .then(({ results: [question] }) => {
           store.setState({ question })
         })
         .catch(err => {
-          store.setMessage({ message: err.message, isAlert: true })
+          store.setState({ message: err.message, isAlert: true })
         })
     }
   },
 
-
+  setDifficulty(state, difficulty) {
+    return { difficulty }
+  },
 
 })

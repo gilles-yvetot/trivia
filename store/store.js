@@ -4,4 +4,5 @@ export default createStore({
   user: null,
   question: null,
   category: null,
+  difficulty: 'all',
 })

@@ -55,7 +55,7 @@ export function callTrivia(amount = 1, category = null, difficulty = null, type 
   const params = []
   if (amount) params.push(`amount=${amount}`)
   if (category) params.push(`category=${category}`)
-  if (difficulty) params.push(`difficulty=${difficulty}`)
+  if (difficulty && difficulty != 'all') params.push(`difficulty=${difficulty}`)
   if (type) params.push(`type=${type}`)
 
   return fetch(`${TRIVIA_BASE_URL}${params.join('&')}`)
