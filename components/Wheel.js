@@ -6,7 +6,6 @@ import wedgesConfig from './wheelConfig'
 const styles = () => ({
 
   wrapper: {
-    padding: '20px',
     position: 'relative',
   },
   txt: {
@@ -120,7 +119,7 @@ const styles = () => ({
     borderRadius: '50%',
     // background: 'red',
     zIndex: '999',
-    boxShadow: 'rgba(255,  255,255,1) 0px -2px 0px inset, rgba(255,  255,  255,  1) 0px 2px 0px inset, rgba(0,0,0,0.4) 0px 0px 5px',
+    // boxShadow: 'rgba(255,  255,255,1) 0px -2px 0px inset, rgba(255,  255,  255,  1) 0px 2px 0px inset, rgba(0,0,0,0.4) 0px 0px 5px',
     background: 'radial-gradient(ellipse at center, rgba(255, 255, 255, 1) 0%, rgba(234, 234, 234, 1) 100%)',
   },
   shine: {

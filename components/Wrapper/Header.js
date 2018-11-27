@@ -18,7 +18,8 @@ const styles = () => ({
     position: 'relative',
     backgroundColor: blueGrey[800],
     boxShadow: '5px 5px 30px 3px rgba(0,0,0,0.2)',
-    zIndex: '15'
+    zIndex: '15',
+    borderRadius: '0'
   },
   left: {
     width: '250px',

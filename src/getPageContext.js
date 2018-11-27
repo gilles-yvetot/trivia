@@ -4,13 +4,14 @@ import { SheetsRegistry } from 'jss';
 import { createMuiTheme, createGenerateClassName } from '@material-ui/core/styles';
 import red from '@material-ui/core/colors/red';
 import pink from '@material-ui/core/colors/pink';
+import blueGrey from '@material-ui/core/colors/blueGrey'
 
 // A theme with custom primary and secondary color.
 // It's optional.
 const theme = createMuiTheme({
   palette: {
-    primary: pink,
-    secondary: pink,
+    primary: blueGrey,
+    secondary: blueGrey,
     error: red,
     divider: '#EBEDF8',
     background: {
@@ -33,7 +34,7 @@ const theme = createMuiTheme({
   overrides: {
     MuiPaper: {
       rounded: {
-        borderRadius: '0px'
+        borderRadius: '4px'
       }
     },
     MuiTooltip: {
@@ -260,10 +261,9 @@ const theme = createMuiTheme({
         fontSize: '0.9em',
         fontWeight: 600,
         whiteSpace: 'nowrap',
-        overflow: 'hidden',
         textOverflow: 'ellipsis',
         minWidth: 1,
-        color: pink[500]
+        color: blueGrey[800]
       },
       action: {
         marginTop: 0,
