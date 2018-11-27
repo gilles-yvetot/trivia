@@ -10,7 +10,6 @@ const styles = () => ({
     display: 'flex',
     flex: '1',
     padding: '20px',
-    fontFamily: 'Roboto, sans-serif',
     background: '#eaeaea',
     justifyContent: 'flex-start',
     flexDirection: 'column',
@@ -31,12 +30,17 @@ class Index extends React.Component {
       classes,
       user,
       question,
+      category,
     } = this.props;
+
     if (user) {
       return (
         <div className={classes.root}>
-          <Wheel onCategorySelected={this.onCategorySelected} />
-          {question && <Question question={question} />}
+          <Wheel
+            onCategorySelected={this.onCategorySelected}
+            onSpin={() => { this.onCategorySelected(null) }}
+          />
+          {question && category && <Question question={question} category={category} />}
         </div>
       );
     }

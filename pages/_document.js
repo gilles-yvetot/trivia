@@ -31,6 +31,7 @@ class MyDocument extends Document {
           body {
             margin: 0;
             height: 100vh;
+            font-family: Oxygen, sans-serif;
           }
 
           #__next {
