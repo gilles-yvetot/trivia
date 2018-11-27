@@ -68,6 +68,9 @@ class Question extends React.Component {
 
   onAnswerClick = idx => {
     this.setState({ chosenIdx: idx })
+    if (this.props.onAnswered) {
+      this.props.onAnswered(this.state.answers[idx])
+    }
   }
 
   render = () => {

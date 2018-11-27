@@ -34,9 +34,12 @@ class Index extends React.Component {
     this.props.setCategory(category)
   }
 
-  onDifficultyChange = difficulty =>{
+  onDifficultyChange = difficulty => {
     this.props.setDifficulty(difficulty)
+  }
 
+  onAnswered = answer => {
+    this.props.addAnswerToUser(answer)
   }
 
   render() {
@@ -61,6 +64,7 @@ class Index extends React.Component {
             <Question
               question={question}
               category={category}
+              onAnswered={this.onAnswered}
             />
           )}
         </div>

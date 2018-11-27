@@ -59,7 +59,7 @@ class Info extends React.Component {
             <Avatar className={classes.avatar} aria-label="initials">{user.email[0].toUpperCase()}</Avatar>
           }
           title={user.email}
-          subheader={`${user.correct || 0} correct answer${user.correct ? 's' : ''}`}
+          subheader={`${user.correctAnswerCount || 0} correct answer${user.correctAnswerCount ? 's' : ''}`}
         />
         <CardContent className={classes.content}>
           <FormControl variant="outlined" className={classes.formControl}>
