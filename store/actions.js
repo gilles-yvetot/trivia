@@ -28,13 +28,15 @@ export default store => ({
     store.setState({
       category
     })
-    callTrivia(1, category.data)
-      .then(({ results: [question] }) => {
-        store.setState({ question })
-      })
-      .catch(err => {
-        store.setMessage({ message: err.message, isAlert: true })
-      })
+    if (category) {
+      callTrivia(1, category.data)
+        .then(({ results: [question] }) => {
+          store.setState({ question })
+        })
+        .catch(err => {
+          store.setMessage({ message: err.message, isAlert: true })
+        })
+    }
   },
 
 
