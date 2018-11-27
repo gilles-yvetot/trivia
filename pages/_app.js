@@ -37,8 +37,12 @@ class MyApp extends App {
     }
     const token = getCookie('token', ctx.req && ctx.req.headers.cookie)
     return callApi('user/verify', 'post', { token, })
-      .then(({ user, token }) => ({ pageProps, user, token }))
-      .catch(() => ({ pageProps }))
+      .then(({ user, token }) => {
+        return { pageProps, user, token }
+      })
+      .catch(() => {
+        return { pageProps }
+      })
   }
 
   render() {

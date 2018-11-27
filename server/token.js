@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const db = require('./User')
+const User = require('./User')
 
 const JWT_SECRET = '3#2fK6V=aFJMFhq+'
 
@@ -28,8 +28,10 @@ function verifyToken(token) {
       if (err) {
         reject(err)
       } else {
-        //todo: needs to check if user is valid in DB
-        resolve(user)
+        User.findOne({ _id: user._id, active: true })
+          .then(usr => {
+            resolve(usr)
+          })
       }
     });
   })
