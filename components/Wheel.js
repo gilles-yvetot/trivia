@@ -92,7 +92,7 @@ const styles = () => ({
       textAlign: 'center',
       lineHeight: '68px',
       fontFamily: 'Oxygen, sans-serif',
-      color: '#CCC',
+      color: '#333',
       // textShadow: '0 2px 0 #fff, 0 -2px 0 rgba(0,0,0,0.3)',
       position: 'relative',
       zIndex: '100000',
