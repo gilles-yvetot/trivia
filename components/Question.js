@@ -3,6 +3,9 @@ import { withStyles } from '@material-ui/core/styles';
 import Proptypes from 'prop-types'
 import Button from '@material-ui/core/Button';
 
+import green from '@material-ui/core/colors/green'
+import red from '@material-ui/core/colors/red'
+
 const styles = () => ({
   root: {
     width: '600px',
@@ -13,7 +16,7 @@ const styles = () => ({
   paper: {
     borderRadius: '4px',
     boxShadow: '0px 1px 3px 0px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12)',
-    overflow: 'hidden',
+    overflow: 'auto',
   },
   padding: {
     padding: '10px',
@@ -35,11 +38,25 @@ const styles = () => ({
     textAlign: 'center',
     width: '100%'
   },
+  chosen: {
+    background: `${red[500]} !important`
+  },
+  correct: {
+    background: `${green[500]} !important`
+  }
 })
 
 class Question extends React.Component {
 
-  state = {}
+  constructor(props) {
+    super(props)
+    const { question: { incorrect_answers, correct_answer } } = this.props
+    const answers = this.shuffleArray([].concat(...incorrect_answers, correct_answer))
+    this.state = {
+      answers,
+      chosenIdx: -1,
+    }
+  }
 
   shuffleArray = (a) => {
     for (let i = a.length - 1; i > 0; i--) {
@@ -49,8 +66,8 @@ class Question extends React.Component {
     return a;
   }
 
-  onAnswerClick = ans => {
-
+  onAnswerClick = idx => {
+    this.setState({ chosenIdx: idx })
   }
 
   render = () => {
@@ -61,7 +78,7 @@ class Question extends React.Component {
       question,
     } = this.props;
 
-    const answers = this.shuffleArray([].concat(...question.incorrect_answers, question.correct_answer))
+    const { answers, chosenIdx } = this.state
 
     return (
       <div className={`${classes.paper} ${classes.root}`}>
@@ -74,12 +91,14 @@ class Question extends React.Component {
         </div>
         <div className={`${classes.question} ${classes.padding}`}>{decodeURIComponent(question.question)}</div>
         <div className={`${classes.padding}`}>
-          {answers.map(ans => (
+          {answers.map((ans, idx) => (
             <Button
-              onClick={() => { this.onAnswerClick(ans) }}
+              key={`btn_ans_${ans}`}
+              disabled={chosenIdx !== -1}
+              onClick={() => { this.onAnswerClick(idx) }}
               variant="extendedFab"
               aria-label={decodeURIComponent(ans)}
-              className={`${classes.paper} ${classes.answer} ${classes.padding}`}
+              className={`${classes.paper} ${classes.answer} ${classes.padding} ${chosenIdx === idx ? classes.chosen : ''} ${chosenIdx !== -1 && ans === question.correct_answer ? classes.correct : ''}`}
             >
               {decodeURIComponent(ans)}
             </Button>
