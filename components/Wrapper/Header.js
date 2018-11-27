@@ -30,7 +30,8 @@ const styles = () => ({
   right: {
     flex: 1,
     display: 'flex',
-    flexDirection: 'row-reverse',
+    flexDirection: 'row',
+    color: '#fff',
     alignItems: 'stretch',
     justifyContent: 'space-between',
     paddingRight: '30px',
@@ -94,6 +95,13 @@ const styles = () => ({
   logoWrapper: {
     cursor: 'pointer',
     marginRight: '30px',
+  },
+  title: {
+    color: '#fff',
+    display: 'flex',
+    alignItems: 'center',
+    padding: '20px',
+    fontSize: '20px',
   }
 });
 
@@ -153,6 +161,7 @@ class Header extends React.Component {
           className={classes.right}
           id='headerContainer'
         >
+          <div className={classes.title}>Omni Trivia</div>
           {component}
           <div className={classes.buttons}>
             <div
