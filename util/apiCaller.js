@@ -50,8 +50,8 @@ export function callApi(endpoint, method = 'get', body) {
   // );
 }
 
-const TRIVIA_BASE_URL = `https://opentdb.com/api.php?`
-export function callTrivia(amount = 1, category = null, difficulty = null, type = null) {
+const TRIVIA_BASE_URL = `https://opentdb.com/api.php?encode=url3986&`
+export function callTrivia(amount = 1, category = null, difficulty = null, type = 'multiple') {
   const params = []
   if (amount) params.push(`amount=${amount}`)
   if (category) params.push(`category=${category}`)

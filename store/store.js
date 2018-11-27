@@ -1,3 +1,7 @@
 import createStore from 'unistore'
 
-export default createStore({ count: 0 })
+export default createStore({
+  user: null,
+  question: null,
+  category: null,
+})
