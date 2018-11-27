@@ -1,7 +1,22 @@
 import { setCookie, deleteCookie } from '../util/cookies'
-import { callTrivia } from '../util/apiCaller'
+import { callTrivia, callApi } from '../util/apiCaller'
 
 export default store => ({
+
+  addAnswerToUser(state, answer) {
+    callApi('user/result', 'post', {
+      question: state.question.question,
+      user_answer: answer,
+      correct_answer: state.question.correct_answer,
+      incorrect_answers: state.question.incorrect_answers,
+    })
+      .then(user => {
+        store.setState({ user, token:state.token })
+      })
+      .catch(err => {
+        store.setState({ message: err.message, isAlert: true })
+      })
+  },
 
   setUser(state, user, token) {
     if (typeof (document) == 'object' && token !== undefined) {

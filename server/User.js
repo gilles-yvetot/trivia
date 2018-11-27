@@ -19,6 +19,11 @@ const UserSchema = new Schema({
     required: true,
     type: String,
   },
+  correctAnswerCount: {
+    type: Number,
+    min: 0,
+    default: 0,
+  },
   active: {
     type: Boolean,
     default: true,
@@ -46,6 +51,12 @@ UserSchema.statics.generateHash = function (password) {
 UserSchema.methods.validPassword = function (password) {
   return bcrypt.compareSync(password, this.password);
 };
-
+UserSchema.methods.lightUser = function () {
+  return {
+    _id: this._id,
+    email: this.email,
+    correctAnswerCount: this.correctAnswerCount,
+  }
+};
 const User = mongoose.model('User', UserSchema);
 module.exports = User;

@@ -28,10 +28,7 @@ function login(req, res) {
       }
       return res.json({
         // we do not send the encrypted password
-        user: {
-          _id: usr._id,
-          email: usr.email,
-        },
+        user: usr.lightUser(),
         token: generateToken(usr),
       })
     })
@@ -66,10 +63,7 @@ function signup(req, res) {
     .then(usr => {
       return res.json({
         // we do not send the encrypted password
-        user: {
-          _id: usr._id,
-          email: usr.email,
-        },
+        user: usr.lightUser(),
         token: generateToken(usr),
       })
     })
@@ -93,10 +87,7 @@ function verify(req, res) {
       // never expired
       return res.json({
         // we do not send the encrypted password
-        user: {
-          _id: usr._id,
-          email: usr.email,
-        },
+        user: usr.lightUser(),
         token: generateToken(usr),
       })
     })
@@ -120,8 +111,13 @@ function saveResult(req, res) {
   result.user = req.user._id
   Result
     .create(result)
-    .then(() => {
-      res.json({ ok: 1 })
+    .then(() => User.findOneAndUpdate(
+      req.user._id,
+      { $inc: { correctAnswerCount: result.correct_answer == result.user_answer ? 1 : 0 } },
+      { new: true }
+    ))
+    .then(usr => {
+      res.json(usr.lightUser())
     })
     .catch(err => {
       res.status(500).json({
