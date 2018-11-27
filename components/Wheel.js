@@ -1,20 +1,12 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import blueGrey from '@material-ui/core/colors/blueGrey'
 import debounce from '../util/debounce'
 import wedgesConfig from './wheelConfig'
 
 const styles = () => ({
-  root: {
-    display: 'flex',
-    alignItems: 'stretch',
-    height: '50px',
-    position: 'relative',
-    backgroundColor: blueGrey[800],
-    boxShadow: '5px 5px 30px 3px rgba(0,0,0,0.2)',
-    zIndex: '15'
-  },
+
   wrapper: {
+    padding: '20px',
     position: 'relative',
   },
   txt: {
@@ -50,8 +42,8 @@ const styles = () => ({
       borderWidth: '130px 75px 0',
       borderColor: '#19c transparent',
       transformOrigin: '75px 129px',
-      left: '44px',
-      top: '-4px',
+      left: '42px',
+      top: '-13px',
     },
     '& $sec .fa': {
       marginTop: '-100px',
@@ -100,7 +92,7 @@ const styles = () => ({
       content: '"SPIN"',
       textAlign: 'center',
       lineHeight: '68px',
-      fontFamily: 'Roboto, sans-serif',
+      fontFamily: 'Oxygen, sans-serif',
       color: '#CCC',
       // textShadow: '0 2px 0 #fff, 0 -2px 0 rgba(0,0,0,0.3)',
       position: 'relative',
@@ -161,8 +153,11 @@ class Wheel extends React.Component {
   state = {
     degree: 0,
     clicks: 0,
-    wedgeCount: wedgesConfig.length,
     wedgeAngle: 360 / wedgesConfig.length,
+  }
+
+  componentDidMount = () => {
+    this.handleClick()
   }
 
   onWheelEnd = debounce(() => {
@@ -193,13 +188,16 @@ class Wheel extends React.Component {
       clicks,
     })
     this.onWheelEnd()
+    if (this.props.onSpin) {
+      this.props.onSpin()
+    }
   };
 
 
   render() {
 
     const { classes, } = this.props;
-    const { degree, wedgeCount, wedgeAngle } = this.state;
+    const { degree, wedgeAngle } = this.state;
 
 
     return (
@@ -218,7 +216,7 @@ class Wheel extends React.Component {
                 className={classes.sec}
                 style={{
                   transform: `rotate(${parseInt((wedgeAngle) * (idx + 1))}deg)`,
-                  borderColor: color,
+                  borderColor: `${color} transparent`,
                 }}
               >
                 <span className={icon} />
