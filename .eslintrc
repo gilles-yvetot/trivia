@@ -63,6 +63,7 @@
     // off = 0, warn = 1, error = 2
     "no-useless-escape": 0,
     "react/prop-types": 0,
+    "react/require-default-props": 0,
     "import/no-named-as-default": 0,
     "import/prefer-default-export": 0,
     "import/no-extraneous-dependencies": 0,
